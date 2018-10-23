@@ -4,7 +4,7 @@ const port = process.env.PORT || 5000;
 const fetch = require("node-fetch");
 const key = 'AIzaSyCqoTF406QHFuJ2_KLgDGYIozDOR1qWsT8';
 
-app.get('/api', (req, res) => {
+app.get('/api/titles', (req, res) => {
 	let url = `https://www.googleapis.com/books/v1/volumes`
 		+`?q=wind`
 		+`&key=${key}`

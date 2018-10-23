@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import Item from '../Item';
+import { API_ENDPOINTS } from '../../constants';
+
+// Components
+import ErrorScreen from '../ErrorScreen';
+import LoadScreen from '../LoadScreen';
+import Title from '../Title';
 import SearchBar from '../SearchBar';
 
 class Container extends Component {
@@ -9,21 +14,20 @@ class Container extends Component {
 		this.state={ 
 			error: null,
 			isLoaded: false,
-			items: []
+			titles: []
 		};
 		this.handleSearch = this.handleSearch.bind(this);
 	}
 
 	componentDidMount() {
-		fetch('/api/hello')
+		fetch(API_ENDPOINTS.TITLES)
 		.then(res => res.json())
 		.then(
 			(result) => {
-				const x = result.map(x => x.volumeInfo.title).sort()
-				console.log(x)
+				const titles = result.map(x => x.volumeInfo.title).sort()
 				this.setState({
 					isLoaded: true,
-					items: x
+					titles: titles
 				});
 			},
 			(error) => {
@@ -37,27 +41,30 @@ class Container extends Component {
 
 	handleSearch(event) {
 		event.preventDefault();
-		const items = this.state.items;
+		const titles = this.state.titles;
 
-		const updatedList = items.filter( (item) =>
-			item.toLowerCase().search(event.target.value.toLowerCase()) !== -1
+		const updatedList = titles.filter( (title) =>
+			title.toLowerCase().search(event.target.value.toLowerCase()) !== -1
 		);
-		this.setState({items: updatedList.sort});
+		this.setState({titles: updatedList.sort});
 	}
 	
 	render() {
-		const { error, isLoaded, items } = this.state;
+		const { error, isLoaded, titles } = this.state;
 		if (error) {
-			return <div>Error: {error.message}</div>;
+			return <ErrorScreen error/>
 		} else if (!isLoaded) {
-			return <div>Loading...</div>;
+			return <LoadScreen />
 		} else {
 			return (
-				<div>
-					<SearchBar handleSearch={this.handleSearch} />
+				<div className="Container row">
+					<SearchBar 
+						label="Filter"
+						handleSearch={this.handleSearch} 
+					/>
 					<div>
-						{items.map( (item) =>
-							<Item item={item}/>
+						{titles.map( title =>
+							<Title key={title} title={title}/>
 						)}
 					</div>
 				</div>

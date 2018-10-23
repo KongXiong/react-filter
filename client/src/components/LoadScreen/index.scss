@@ -1,0 +1,21 @@
+@keyframes loader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.LoadScreen:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4rem;
+  height: 4rem;
+  margin-top: -2rem;
+  margin-left: -2rem;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #07d;
+  animation: loader .85s linear infinite;
+}
