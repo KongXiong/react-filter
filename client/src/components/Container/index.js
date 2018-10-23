@@ -14,6 +14,7 @@ class Container extends Component {
 		this.state={ 
 			error: null,
 			isLoaded: false,
+			initialBooks:[],
 			books: []
 		};
 		this.handleSearch = this.handleSearch.bind(this);
@@ -27,6 +28,7 @@ class Container extends Component {
 				const books = result
 				this.setState({
 					isLoaded: true,
+					initialBooks: books,
 					books: books
 				});
 			},
@@ -41,7 +43,13 @@ class Container extends Component {
 
 	handleSearch(event) {
 		event.preventDefault();
-		const books = this.state.books;
+		let books = [];
+
+		if (event.keyCode === 8){
+			books = this.state.initialBooks;
+		} else {
+			books = this.state.books;
+		}
 
 		const updatedList = books.filter( (book) =>
 			book.volumeInfo.title.toLowerCase().search(event.target.value.toLowerCase()) !== -1

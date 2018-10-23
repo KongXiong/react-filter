@@ -4,7 +4,7 @@ import React from 'react';
 import './index.scss';
 
 const Book = ({title}) =>
-	<div className="Book containter border">
+	<div className="Book container">
 		{title}
 	</div>;
 
