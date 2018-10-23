@@ -4,7 +4,7 @@ import { API_ENDPOINTS } from '../../constants';
 // Components
 import ErrorScreen from '../ErrorScreen';
 import LoadScreen from '../LoadScreen';
-import Title from '../Title';
+import Book from '../Book';
 import SearchBar from '../SearchBar';
 
 class Container extends Component {
@@ -14,7 +14,7 @@ class Container extends Component {
 		this.state={ 
 			error: null,
 			isLoaded: false,
-			titles: []
+			books: []
 		};
 		this.handleSearch = this.handleSearch.bind(this);
 	}
@@ -24,10 +24,10 @@ class Container extends Component {
 		.then(res => res.json())
 		.then(
 			(result) => {
-				const titles = result.map(x => x.volumeInfo.title).sort()
+				const books = result
 				this.setState({
 					isLoaded: true,
-					titles: titles
+					books: books
 				});
 			},
 			(error) => {
@@ -41,16 +41,16 @@ class Container extends Component {
 
 	handleSearch(event) {
 		event.preventDefault();
-		const titles = this.state.titles;
+		const books = this.state.books;
 
-		const updatedList = titles.filter( (title) =>
-			title.toLowerCase().search(event.target.value.toLowerCase()) !== -1
+		const updatedList = books.filter( (book) =>
+			book.volumeInfo.title.toLowerCase().search(event.target.value.toLowerCase()) !== -1
 		);
-		this.setState({titles: updatedList.sort});
+		this.setState({books: updatedList});
 	}
 	
 	render() {
-		const { error, isLoaded, titles } = this.state;
+		const { error, isLoaded, books } = this.state;
 		if (error) {
 			return <ErrorScreen error/>
 		} else if (!isLoaded) {
@@ -63,8 +63,8 @@ class Container extends Component {
 						handleSearch={this.handleSearch} 
 					/>
 					<div>
-						{titles.map( title =>
-							<Title key={title} title={title}/>
+						{books.map( book =>
+							<Book title={book.volumeInfo.title} key={book.id}/>
 						)}
 					</div>
 				</div>
