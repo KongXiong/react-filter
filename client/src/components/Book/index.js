@@ -1,7 +1,10 @@
 import React from 'react';
 
+// Styles.
+import './index.scss';
+
 const Book = ({title}) =>
-	<div className="Book containter">
+	<div className="Book containter border">
 		{title}
 	</div>;
 

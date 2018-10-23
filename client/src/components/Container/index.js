@@ -57,12 +57,12 @@ class Container extends Component {
 			return <LoadScreen />
 		} else {
 			return (
-				<div className="Container row">
+				<div className="container" >
 					<SearchBar 
 						label="Filter"
 						handleSearch={this.handleSearch} 
 					/>
-					<div>
+					<div className="container">
 						{books.map( book =>
 							<Book title={book.volumeInfo.title} key={book.id}/>
 						)}
