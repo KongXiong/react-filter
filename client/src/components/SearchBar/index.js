@@ -1,9 +1,10 @@
 import React from 'react';
 
 const SearchBar = (props) =>
-	<div className='container'>
+	<form className='container' onSubmit={props.handleSearch}>
 		<label>Search</label>
-	  <input type="text" onKeyUp={props.handleSearch}/>
-	</div>;
+		<input type="text" />
+		<button type='submit'> Submit </button>
+	</form>;
 
 export default SearchBar;

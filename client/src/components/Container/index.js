@@ -19,9 +19,11 @@ class Container extends Component {
 		.then(res => res.json())
 		.then(
 			(result) => {
+				const x = result.map(x => x.volumeInfo.title).sort()
+				console.log(x)
 				this.setState({
 					isLoaded: true,
-					items: result.items
+					items: x
 				});
 			},
 			(error) => {
@@ -40,7 +42,7 @@ class Container extends Component {
 		const updatedList = items.filter( (item) =>
 			item.toLowerCase().search(event.target.value.toLowerCase()) !== -1
 		);
-		this.setState({items: updatedList});
+		this.setState({items: updatedList.sort});
 	}
 	
 	render() {
