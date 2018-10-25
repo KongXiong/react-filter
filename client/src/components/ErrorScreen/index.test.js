@@ -6,10 +6,10 @@ import "../../setupTests";
 import ErrorScreen from './';
 
 it('ErrorScreen renders without crashing', () => {
-  const error = {
-    message: 'Oh no, there is an error.',
-  }
-  const errorScreen = shallow( <ErrorScreen error={error} /> );
-  expect(errorScreen.find('.ErrorScreen').length).toEqual(1);
-  expect(errorScreen.find('.ErrorScreen').text()).toEqual('Oh no, there is an error.');
+	const error = {
+		message: 'Oh no, there is an error.',
+	}
+	const errorScreen = shallow( <ErrorScreen error={error} /> );
+	expect(errorScreen.find('.ErrorScreen').length).toEqual(1);
+	expect(errorScreen.find('.ErrorScreen').text()).toEqual('Oh no, there is an error.');
 });

@@ -1,3 +1,3 @@
 export const API_ENDPOINTS = {
-    TITLES: '/api/titles'
+	TITLES: '/api/titles'
 }

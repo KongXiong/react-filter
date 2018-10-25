@@ -70,7 +70,6 @@ class Container extends Component {
 	  return comparison;
 	}
 
-	
 	render() {
 		const { error, isLoaded, books } = this.state;
 		if (error) {

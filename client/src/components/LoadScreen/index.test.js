@@ -6,6 +6,6 @@ import "../../setupTests";
 import LoadScreen from './';
 
 it('LoadScreen renders without crashing', () => {
-  const loadScreen = shallow( < LoadScreen /> );
-  expect(loadScreen.find('.LoadScreen').length).toEqual(1);
+	const loadScreen = shallow( < LoadScreen /> );
+	expect(loadScreen.find('.LoadScreen').length).toEqual(1);
 });

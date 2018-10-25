@@ -6,6 +6,6 @@ import "../../setupTests";
 import App from './';
 
 it('App renders without crashing', () => {
-  const app = shallow(<App />);
-  expect(app.find('.App').length).toEqual(1);
+	const app = shallow(<App />);
+	expect(app.find('.App').length).toEqual(1);
 });

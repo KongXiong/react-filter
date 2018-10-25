@@ -7,13 +7,13 @@ import './index.scss';
 import Container from '../Container';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App container">
-        <Container />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="App container"> 
+				<Container /> 
+			</div> 
+		); 
+	} 
 }
 
 export default App;

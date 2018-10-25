@@ -4,13 +4,13 @@ import React from 'react';
 import './index.scss';
 
 const ErrorScreen = ({error}) => {
-  const { message } = error;
+	const { message } = error;
 
-  return(
-    <div className="ErrorScreen">
-        { message }
-    </div>
-  )
+	return(
+		<div className="ErrorScreen">
+			{ message }
+		</div>
+	)
 }
 
 export default ErrorScreen;
