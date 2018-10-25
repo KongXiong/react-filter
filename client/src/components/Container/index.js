@@ -25,7 +25,7 @@ class Container extends Component {
 		.then(res => res.json())
 		.then(
 			(result) => {
-				const books = result
+				const books = result.sort(this.sortTitle)
 				this.setState({
 					isLoaded: true,
 					initialBooks: books,
@@ -53,9 +53,23 @@ class Container extends Component {
 
 		const updatedList = books.filter( (book) =>
 			book.volumeInfo.title.toLowerCase().search(event.target.value.toLowerCase()) !== -1
-		);
+		).sort(this.sortTitle);
 		this.setState({books: updatedList});
 	}
+
+	sortTitle(a, b) {
+	  const bookA = a.volumeInfo.title.toLowerCase();
+	  const bookB = b.volumeInfo.title.toLowerCase();
+
+	  let comparison = 0;
+	  if (bookA > bookB) {
+	    comparison = 1;
+	  } else if (bookA < bookB) {
+	    comparison = -1;
+	  }
+	  return comparison;
+	}
+
 	
 	render() {
 		const { error, isLoaded, books } = this.state;
